@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            background-color: #000;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #00FF00;
+            color: #000;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #00AA00;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <button id="startButton">Start Game</button>
+    <div class="controls">
+        <h3>Controls</h3>
+        <p>Use the arrow keys to move the snake:</p>
+        <ul>
+            <li><strong>Arrow Up:</strong> Move Up</li>
+            <li><strong>Arrow Down:</strong> Move Down</li>
+            <li><strong>Arrow Left:</strong> Move Left</li>
+            <li><strong>Arrow Right:</strong> Move Right</li>
+        </ul>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const startButton = document.getElementById("startButton");
+
+        const box = 20; // Size of each grid square
+        let snake = [{ x: 9 * box, y: 10 * box }]; // Initial snake position
+        let food = {
+            x: Math.floor(Math.random() * (canvas.width / box)) * box,
+            y: Math.floor(Math.random() * (canvas.height / box)) * box
+        };
+        let direction =
